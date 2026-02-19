@@ -10,6 +10,6 @@ services:
   frontend:
     build: 
       context: .
-      dockerfile: Dockerfile-frontend
+      dockerfile: Dockerfile-frontendd
     ports:
       - 3000:3000
