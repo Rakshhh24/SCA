@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile-backend
     ports:
       - 8080:8080
-      - 11337:113371
+      - 11337:1133712
   frontend:
     build: 
       context: .
