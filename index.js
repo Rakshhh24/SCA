@@ -18,7 +18,7 @@ import('trim-newlines').then((module) => {
 
 const app = express();
 app.use(express.urlencoded({ limit: '11mb', extended: true }));
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '15mb' }));
 app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
