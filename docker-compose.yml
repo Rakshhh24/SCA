@@ -12,4 +12,4 @@ services:
       context: .
       dockerfile: Dockerfile-frontend
     ports:
-      - 3000:30001
+      - 3000:300011
