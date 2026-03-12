@@ -5,7 +5,7 @@ const http = require('http');
 const express = require('express');
 const path = require('path');
 const { exec } = require('child_process');
-const pug = require('pug');
+const pug = require('pugg');
 let trimNewlines;
 
 // Import the trim-newlines module with proper error handling
