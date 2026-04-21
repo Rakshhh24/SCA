@@ -20,8 +20,8 @@ jobs:
       - name: Run Checkmarx One IaC scan
         uses: checkmarx/ast-github-action@main
         with:
-          project_name: iac-proj
-          branch: master
+          project_name: Rakshhh24/SCA
+          branch: main
           tenant: cx_ind_internal_test
           base_uri: https://ind.ast.checkmarx.net
           base_auth_uri: https://ind.iam.checkmarx.net 
