@@ -1,0 +1,35 @@
+name: Checkmarx One IaC Scan
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  checkmarx-iac-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Run Checkmarx One IaC scan
+        uses: checkmarx/ast-github-action@main
+        with:
+          project_name: iac-proj
+          branch: master
+          tenant: cx_ind_internal_test
+          base_uri: https://ind.ast.checkmarx.net
+          base_auth_uri: https://ind.iam.checkmarx.net 
+          cx_client_id: rakshu
+          cx_client_secret: 1nnrTKXhnTAKRFAWUuqRqruXyueHoWd4 
+          additional_params: >-
+            --debug
+            -s .
+            --scan-types iac-security
+            --iac-security-platforms Terraform,Kubernetes
+            --iac-security-preset-id 5939486f-90a7-416d-91ea-d8e55a13334f
