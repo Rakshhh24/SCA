@@ -3,10 +3,10 @@ name: Checkmarx One IaC Scan
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 jobs:
@@ -22,13 +22,13 @@ jobs:
         with:
           project_name: Rakshhh24/SCA
           branch: main
-          tenant: cx_ind_internal_test
+          cx_tenant: cx_ind_internal_test
           base_uri: https://ind.ast.checkmarx.net
-          base_auth_uri: https://ind.iam.checkmarx.net 
+          base_auth_uri: https://ind.iam.checkmarx.net
           cx_client_id: rakshu
-          cx_client_secret: GcXLuuKsV3jxIdH8ncLH75kPL2Rr2FFh 
-          additional_params: >-
-            --debug
+          cx_client_secret: GcXLuuKsV3jxIdH8ncLH75kPL2Rr2FFh
+          global_params: --debug
+          scan_params: >-
             -s .
             --scan-types iac-security
             --iac-security-platforms Terraform,Kubernetes
