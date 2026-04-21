@@ -1,35 +1,43 @@
-name: Checkmarx One IaC Scan
+name: Checkmarx CLI IaC Scan
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
-  checkmarx-iac-scan:
+  checkmarx-cli-scan:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Run Checkmarx One IaC scan
-        uses: checkmarx/ast-github-action@main
-        with:
-          project_name: Rakshhh24/IAC
-          branch: main
-          cx_tenant: cx_ind_internal_test
-          base_uri: https://ind.ast.checkmarx.net
-          base_auth_uri: https://ind.iam.checkmarx.net
-          cx_client_id: rakshu
-          cx_client_secret: GcXLuuKsV3jxIdH8ncLH75kPL2Rr2FFh
-          global_params: --debug
-          scan_params: >-
-            -s .
-            --scan-types iac-security
-            --iac-security-platforms Terraform,Kubernetes
+      - name: Download Checkmarx CLI
+        run: |
+          curl -L -o cx.tar.gz https://github.com/Checkmarx/ast-cli/releases/download/2.3.48/ast-cli_linux_arm64.tar.gz
+          tar -xzf cx.tar.gz
+          chmod +x cx
+          ./cx version
+
+      - name: Authenticate to Checkmarx One
+        run: |
+          ./cx auth login \
+          --cx_tenant: cx_ind_internal_test \
+          --base_uri: https://ind.ast.checkmarx.net \
+          --base_auth_uri: https://ind.iam.checkmarx.net \
+          --cx_client_id: rakshu \
+          --cx_client_secret: GcXLuuKsV3jxIdH8ncLH75kPL2Rr2FFh \
+          --global_params: --debug"
+
+      - name: Run IaC scan
+        run: |
+          ./cx scan create \
+            --debug \
+            --project-name "Rakshhh24/SCA" \
+            -s . \
+            -b main \
+            --scan-types iac-security \
+            --iac-security-platforms Terraform,Kubernetes \
             --iac-security-preset-id 5939486f-90a7-416d-91ea-d8e55a13334f
