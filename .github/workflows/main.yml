@@ -26,7 +26,7 @@ jobs:
           base_uri: https://ind.ast.checkmarx.net
           base_auth_uri: https://ind.iam.checkmarx.net 
           cx_client_id: rakshu
-          cx_client_secret: 1nnrTKXhnTAKRFAWUuqRqruXyueHoWd4 
+          cx_client_secret: GcXLuuKsV3jxIdH8ncLH75kPL2Rr2FFh 
           additional_params: >-
             --debug
             -s .
