@@ -21,5 +21,5 @@ COPY ./backend .
 # Build the backend with the malicious dependency available
 RUN mvn clean install
 
-EXPOSE 8080
+EXPOSE 8081
 CMD ["java", "-Xss8m", "-Dcom.sun.jndi.ldap.object.trustURLCodebase=true", "-jar", "target/springboot-app-0.0.1-SNAPSHOT.jar"]
