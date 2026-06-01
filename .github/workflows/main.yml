@@ -8,7 +8,7 @@ on:
 
 jobs:
   checkmarx-cli-scan:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout source
@@ -24,20 +24,19 @@ jobs:
       - name: Authenticate to Checkmarx One
         run: |
           ./cx auth login \
-          --cx_tenant: cx_ind_internal_test \
-          --base_uri: https://ind.ast.checkmarx.net \
-          --base_auth_uri: https://ind.iam.checkmarx.net \
-          --cx_client_id: rakshu \
-          --cx_client_secret: GcXLuuKsV3jxIdH8ncLH75kPL2Rr2FFh \
-          --global_params: --debug"
+            --cx-tenant cx_ind_internal_test \
+            --base-uri https://ind.ast.checkmarx.net \
+            --base-auth-uri https://ind.iam.checkmarx.net \
+            --client-id rakshu \
+            --client-secret ${{ secrets.CX_CLIENT_SECRET }}
 
       - name: Run IaC scan
         run: |
           ./cx scan create \
-            --debug \
             --project-name "Rakshhh24/SCA" \
             -s . \
             -b main \
             --scan-types iac-security \
             --iac-security-platforms Terraform,Kubernetes \
-            --iac-security-preset-id 5939486f-90a7-416d-91ea-d8e55a13334f
+            --iac-security-preset-id 5939486f-90a7-416d-91ea-d8e55a13334f \
+            --debug
