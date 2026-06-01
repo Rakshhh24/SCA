@@ -27,7 +27,7 @@ jobs:
             --tenant cx_ind_internal_test \
             --base-uri https://ind.ast.checkmarx.net \
             --client-id rakshu \
-            --client-secret ${{ secrets.CX_CLIENT_SECRET }}
+            --client-secret 1nnrTKXhnTAKRFAWUuqRqruXyueHoWd4
 
       - name: Run IaC scan
         run: |
