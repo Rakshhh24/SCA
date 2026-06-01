@@ -8,7 +8,7 @@ on:
 
 jobs:
   checkmarx-cli-scan:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout source
