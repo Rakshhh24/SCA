@@ -26,7 +26,6 @@ jobs:
           ./cx auth login \
             --cx-tenant cx_ind_internal_test \
             --base-uri https://ind.ast.checkmarx.net \
-            --base-auth-uri https://ind.iam.checkmarx.net \
             --client-id rakshu \
             --client-secret ${{ secrets.CX_CLIENT_SECRET }}
 
