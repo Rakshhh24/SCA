@@ -2,25 +2,22 @@ name: Checkmarx One Scan
 
 on:
   pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-    branches:
-      - main
+    types: [opened, reopened, synchronize]
+    branches: [main]
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   checkmarx-scan:
     name: Checkmarx One Security Scan
     runs-on: ubuntu-latest
-
     permissions:
       contents: read
       security-events: write
       actions: read
+      pull-requests: write
 
     steps:
       - name: Checkout Repository
@@ -31,16 +28,9 @@ jobs:
         with:
           base_uri: "https://ind.ast.checkmarx.net"
           cx_client_id: rakshu
-          cx_client_secret: Ye7C6EA2DA6IxPFnCVm79TVECTXZrMH8iOg924GE2cMlfzVegx848rJCVGD915LolzLUs1ooA7mED7Jn8QQzgw
+          cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
           cx_tenant: cx_ind_internal_test
-
-          # Scan configuration
-          scan_params: >-
+          additional_params: >-
             --scan-types sast
             --sast-incremental
             --base-branch main
-
-      - name: Upload SARIF Results
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: cx_result.sarif
