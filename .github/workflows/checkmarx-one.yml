@@ -35,7 +35,7 @@ jobs:
           cx_tenant: cx_ind_internal_test
 
           # Scan configuration
-          additional_params: >-
+          scan_params: >-
             --scan-types sast
             --sast-incremental
             --base-branch main
