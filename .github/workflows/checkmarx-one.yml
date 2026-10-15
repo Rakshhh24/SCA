@@ -38,7 +38,7 @@ jobs:
           additional_params: >-
             --scan-types sast
             --sast-incremental
-            --sast-base-branch main
+            --base-branch main
 
       - name: Upload SARIF Results
         uses: github/codeql-action/upload-sarif@v3
