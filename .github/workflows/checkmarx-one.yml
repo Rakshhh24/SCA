@@ -1,0 +1,36 @@
+name: Checkmarx One Scann
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  checkmarx-scan:
+    name: Checkmarx One Security Scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Checkmarx One Scan
+        uses: checkmarx/ast-github-action@2.3.46
+        with:
+          base_uri: "https://ind.ast.checkmarx.net"
+          cx_client_id: rakshu
+          cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
+          cx_tenant: cx_ind_internal_test
+          scan_params: >-
+            --scan-types sast
+            --sast-incremental
+            --base-branch main
