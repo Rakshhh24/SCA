@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Checkmarx One Scan
-        uses: checkmarx/ast-github-action@8e887bb93dacc44e0f5b64ee2b06d5815f89d4fc
+        uses: checkmarx/ast-github-action@2.3.46
         with:
           base_uri: "https://ind.ast.checkmarx.net"
           cx_client_id: rakshu
