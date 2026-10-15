@@ -1,4 +1,4 @@
-name: Checkmarx One Scan
+name: Checkmarx One Scann
 
 on:
   pull_request:
